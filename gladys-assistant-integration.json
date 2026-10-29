@@ -1,0 +1,269 @@
+{
+  "manifest_version": 1,
+  "type": "ai",
+  "name": "Claude AI",
+  "description": {
+    "en": "Run the Gladys assistant on Claude, the AI of Anthropic, with your own API key.",
+    "fr": "Faites tourner l'assistant Gladys sur Claude, l'IA d'Anthropic, avec votre clé d'API.",
+    "de": "Betreibe den Gladys-Assistenten mit Claude, der KI von Anthropic, und deinem API-Schlüssel.",
+    "es": "Haga funcionar el asistente de Gladys con Claude, la IA de Anthropic, y su clave de API."
+  },
+  "version": "0.1.0",
+  "docker_image": "ghcr.io/prohand/gladys-ai-claude:0.1.0",
+  "gladys_version": ">=5.3.0",
+  "cover_image": "https://raw.githubusercontent.com/prohand/gladys-ai-claude/main/cover.png",
+  "categories": ["assistants"],
+  "keywords": ["anthropic", "claude", "opus", "sonnet", "haiku", "llm", "chatbot", "ia", "ki"],
+  "transports": ["cloud"],
+  "config_schema": [
+    {
+      "key": "intro",
+      "type": "section",
+      "label": {
+        "en": "Getting started",
+        "fr": "Pour commencer",
+        "de": "Erste Schritte",
+        "es": "Primeros pasos"
+      },
+      "description": {
+        "en": "Claude answers through the Anthropic API, in the cloud: create an API key on console.anthropic.com (usage is billed by Anthropic), paste it below, then select this integration in Settings, Artificial Intelligence. Claude then sees every chat message, the history, the state of the devices it reads and the chat images.",
+        "fr": "Claude répond via l'API d'Anthropic, dans le cloud : créez une clé d'API sur console.anthropic.com (l'usage est facturé par Anthropic), collez-la ci-dessous, puis choisissez cette intégration dans Paramètres, Intelligence artificielle. Claude voit alors chaque message du chat, l'historique, l'état des appareils qu'il consulte et les images du chat.",
+        "de": "Claude antwortet über die Anthropic-API, in der Cloud: Erstelle einen API-Schlüssel auf console.anthropic.com (die Nutzung wird von Anthropic abgerechnet), füge ihn unten ein und wähle dann diese Integration unter Einstellungen, Künstliche Intelligenz. Claude sieht dann jede Chat-Nachricht, den Verlauf, den Zustand der Geräte, die es abfragt, und die Bilder des Chats.",
+        "es": "Claude responde a través de la API de Anthropic, en la nube: cree una clave de API en console.anthropic.com (Anthropic factura el uso), péguela abajo y luego elija esta integración en Ajustes, Inteligencia artificial. Claude ve entonces cada mensaje del chat, el historial, el estado de los dispositivos que consulta y las imágenes del chat."
+      },
+      "links": [
+        {
+          "url": "https://console.anthropic.com/settings/keys",
+          "label": {
+            "en": "Anthropic API keys",
+            "fr": "Clés d'API Anthropic",
+            "de": "Anthropic-API-Schlüssel",
+            "es": "Claves de API de Anthropic"
+          }
+        },
+        {
+          "url": "https://github.com/prohand/gladys-ai-claude/blob/main/docs/en.md",
+          "label": {
+            "en": "Integration documentation",
+            "fr": "Documentation de l'intégration",
+            "de": "Dokumentation der Integration",
+            "es": "Documentación de la integración"
+          }
+        }
+      ]
+    },
+    {
+      "key": "api_key",
+      "type": "secret",
+      "label": {
+        "en": "Anthropic API key",
+        "fr": "Clé d'API Anthropic",
+        "de": "Anthropic-API-Schlüssel",
+        "es": "Clave de API de Anthropic"
+      },
+      "description": {
+        "en": "Created on console.anthropic.com, it starts with sk-ant-. It stays in Gladys and is never shown again nor logged.",
+        "fr": "Créée sur console.anthropic.com, elle commence par sk-ant-. Elle reste dans Gladys, n'est plus jamais affichée ni journalisée.",
+        "de": "Auf console.anthropic.com erstellt, beginnt er mit sk-ant-. Er bleibt in Gladys und wird nie wieder angezeigt oder protokolliert.",
+        "es": "Creada en console.anthropic.com, empieza por sk-ant-. Se queda en Gladys y nunca se vuelve a mostrar ni se registra."
+      },
+      "placeholder": {
+        "en": "sk-ant-...",
+        "fr": "sk-ant-...",
+        "de": "sk-ant-...",
+        "es": "sk-ant-..."
+      },
+      "required": true
+    },
+    {
+      "key": "model",
+      "type": "select",
+      "label": {
+        "en": "Chat model",
+        "fr": "Modèle du chat",
+        "de": "Chat-Modell",
+        "es": "Modelo del chat"
+      },
+      "description": {
+        "en": "Answers the chat, creates the scenes and writes the weekly digest. Opus is the most capable for its price, Sonnet faster and cheaper, Fable the strongest and the most expensive.",
+        "fr": "Répond au chat, crée les scènes et rédige le résumé hebdomadaire. Opus est le plus capable pour son prix, Sonnet plus rapide et moins cher, Fable le plus fort et le plus cher.",
+        "de": "Beantwortet den Chat, erstellt die Szenen und schreibt die Wochenzusammenfassung. Opus ist für seinen Preis am leistungsfähigsten, Sonnet schneller und günstiger, Fable am stärksten und am teuersten.",
+        "es": "Responde al chat, crea las escenas y redacta el resumen semanal. Opus es el más capaz por su precio, Sonnet más rápido y barato, Fable el más potente y el más caro."
+      },
+      "required": true,
+      "default": "claude-opus-5-5",
+      "options": [
+        {
+          "value": "claude-opus-5-5",
+          "label": {
+            "en": "Claude Opus 5.5 (recommended)",
+            "fr": "Claude Opus 5.5 (recommandé)",
+            "de": "Claude Opus 5.5 (empfohlen)",
+            "es": "Claude Opus 5.5 (recomendado)"
+          }
+        },
+        {
+          "value": "claude-fable-5-1",
+          "label": {
+            "en": "Claude Fable 5.1",
+            "fr": "Claude Fable 5.1",
+            "de": "Claude Fable 5.1",
+            "es": "Claude Fable 5.1"
+          }
+        },
+        {
+          "value": "claude-sonnet-5-5",
+          "label": {
+            "en": "Claude Sonnet 5.5",
+            "fr": "Claude Sonnet 5.5",
+            "de": "Claude Sonnet 5.5",
+            "es": "Claude Sonnet 5.5"
+          }
+        },
+        {
+          "value": "claude-haiku-5-5",
+          "label": {
+            "en": "Claude Haiku 5.5",
+            "fr": "Claude Haiku 5.5",
+            "de": "Claude Haiku 5.5",
+            "es": "Claude Haiku 5.5"
+          }
+        }
+      ]
+    },
+    {
+      "key": "fast_model",
+      "type": "select",
+      "label": {
+        "en": "Router model",
+        "fr": "Modèle du routeur",
+        "de": "Router-Modell",
+        "es": "Modelo del enrutador"
+      },
+      "description": {
+        "en": "Sorts every chat message before the answer, and must reply within 20 seconds: a fast model fits best.",
+        "fr": "Trie chaque message du chat avant la réponse, et doit répondre en moins de 20 secondes : un modèle rapide convient le mieux.",
+        "de": "Ordnet jede Chat-Nachricht vor der Antwort ein und muss innerhalb von 20 Sekunden antworten: Ein schnelles Modell passt am besten.",
+        "es": "Clasifica cada mensaje del chat antes de la respuesta y debe contestar en menos de 20 segundos: lo mejor es un modelo rápido."
+      },
+      "required": true,
+      "default": "claude-haiku-5-5",
+      "options": [
+        {
+          "value": "claude-haiku-5-5",
+          "label": {
+            "en": "Claude Haiku 5.5 (recommended)",
+            "fr": "Claude Haiku 5.5 (recommandé)",
+            "de": "Claude Haiku 5.5 (empfohlen)",
+            "es": "Claude Haiku 5.5 (recomendado)"
+          }
+        },
+        {
+          "value": "claude-sonnet-5-5",
+          "label": {
+            "en": "Claude Sonnet 5.5",
+            "fr": "Claude Sonnet 5.5",
+            "de": "Claude Sonnet 5.5",
+            "es": "Claude Sonnet 5.5"
+          }
+        },
+        {
+          "value": "claude-opus-5-5",
+          "label": {
+            "en": "Claude Opus 5.5",
+            "fr": "Claude Opus 5.5",
+            "de": "Claude Opus 5.5",
+            "es": "Claude Opus 5.5"
+          }
+        },
+        {
+          "value": "claude-fable-5-1",
+          "label": {
+            "en": "Claude Fable 5.1",
+            "fr": "Claude Fable 5.1",
+            "de": "Claude Fable 5.1",
+            "es": "Claude Fable 5.1"
+          }
+        }
+      ]
+    },
+    {
+      "key": "effort",
+      "type": "select",
+      "label": {
+        "en": "Reasoning effort",
+        "fr": "Effort de réflexion",
+        "de": "Denkaufwand",
+        "es": "Esfuerzo de razonamiento"
+      },
+      "description": {
+        "en": "How much the chat model thinks before it answers. More effort: better answers on hard requests, but slower and more tokens billed.",
+        "fr": "Combien le modèle du chat réfléchit avant de répondre. Plus d'effort : de meilleures réponses aux demandes difficiles, mais plus lentes et plus de jetons facturés.",
+        "de": "Wie viel das Chat-Modell vor der Antwort nachdenkt. Mehr Aufwand: bessere Antworten auf schwierige Anfragen, aber langsamer und mehr abgerechnete Tokens.",
+        "es": "Cuánto piensa el modelo del chat antes de responder. Más esfuerzo: mejores respuestas a las peticiones difíciles, pero más lentas y con más tokens facturados."
+      },
+      "required": false,
+      "default": "medium",
+      "options": [
+        {
+          "value": "low",
+          "label": { "en": "Low", "fr": "Faible", "de": "Niedrig", "es": "Bajo" }
+        },
+        {
+          "value": "medium",
+          "label": {
+            "en": "Medium (recommended)",
+            "fr": "Moyen (recommandé)",
+            "de": "Mittel (empfohlen)",
+            "es": "Medio (recomendado)"
+          }
+        },
+        {
+          "value": "high",
+          "label": { "en": "High", "fr": "Élevé", "de": "Hoch", "es": "Alto" }
+        },
+        {
+          "value": "xhigh",
+          "label": {
+            "en": "Very high",
+            "fr": "Très élevé",
+            "de": "Sehr hoch",
+            "es": "Muy alto"
+          }
+        }
+      ]
+    },
+    {
+      "key": "max_tokens",
+      "type": "number",
+      "label": {
+        "en": "Maximum answer length (tokens)",
+        "fr": "Longueur maximale d'une réponse (jetons)",
+        "de": "Maximale Antwortlänge (Tokens)",
+        "es": "Longitud máxima de una respuesta (tokens)"
+      },
+      "description": {
+        "en": "The reasoning counts in it too. Raise it if the logs say an answer hit max_tokens.",
+        "fr": "La réflexion compte aussi dedans. Augmentez-la si les journaux indiquent qu'une réponse a atteint max_tokens.",
+        "de": "Das Nachdenken zählt ebenfalls dazu. Erhöhe den Wert, wenn die Protokolle melden, dass eine Antwort max_tokens erreicht hat.",
+        "es": "El razonamiento también cuenta. Auméntela si los registros indican que una respuesta ha alcanzado max_tokens."
+      },
+      "required": false,
+      "default": 16000,
+      "min": 1024,
+      "max": 32000
+    }
+  ],
+  "actions": [
+    {
+      "key": "test_connection",
+      "label": {
+        "en": "Test the connection",
+        "fr": "Tester la connexion",
+        "de": "Verbindung testen",
+        "es": "Probar la conexión"
+      },
+      "timeout_seconds": 60
+    }
+  ]
+}
