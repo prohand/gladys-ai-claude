@@ -1,6 +1,6 @@
 {
   "name": "gladys-ai-claude",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Gladys Assistant external integration: Claude (Anthropic) as the AI provider of the Gladys assistant.",
   "type": "module",

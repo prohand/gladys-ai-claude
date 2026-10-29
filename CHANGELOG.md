@@ -10,6 +10,8 @@ the notes of the version's GitHub Release.
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-10-29
+
 ### Added
 
 - Claude AI provider (manifest `type: "ai"`, Gladys 5.3.0 or later): the chat
@@ -30,4 +32,5 @@ the notes of the version's GitHub Release.
   Release workflow, multi-arch image build, GitHub Releases, Dependabot.
 - `SECURITY.md`, `CLAUDE.md`.
 
-[Unreleased]: https://github.com/prohand/gladys-ai-claude/commits/main
+[Unreleased]: https://github.com/prohand/gladys-ai-claude/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/prohand/gladys-ai-claude/releases/tag/v0.1.1
