@@ -16,7 +16,7 @@
     "node": ">=22"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^1.6.0",
+    "@anthropic-ai/sdk": "^1.8.0",
     "@gladysassistant/integration-sdk": "^0.16.1"
   },
   "devDependencies": {
